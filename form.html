@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <section>Павлов Алексей, группа 1023</section>
+    <header>
+        <h1>Бронирование компьютера</h1>
+    </header>
+    <form action="submit_reservation.html" method="post">
+        <h2>Забронируй свой компьютер</h2>
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="date">Reservation Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Reservation Time:</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="duration">Duration (hours):</label>
+        <input type="number" id="duration" name="duration" min="1" max="24" required>
+
+        <label for="station">Select Station:</label>
+        <select id="station" name="station" required>
+            <option value="station1">Station 1</option>
+            <option value="station2">Station 2</option>
+            <option value="station3">Station 3</option>
+            <option value="station4">Station 4</option>
+            <option value="station5">Station 5</option>
+            <option value="station6">Station 6</option>
+        </select>
+
+        <input type="submit" value="Submit Reservation">
+    </form>
+</body>
+</html>
