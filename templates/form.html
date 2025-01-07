@@ -11,24 +11,24 @@
     <header>
         <h1>Бронирование компьютера</h1>
     </header>
-    <form action="submit_reservation.html" method="post">
+    <form id="formInfo">
         <h2>Забронируй свой компьютер</h2>
-        <label for="name">Full Name:</label>
+        <label for="name">Имя:</label>
         <input type="text" id="name" name="name" required>
 
-        <label for="email">Email:</label>
+        <label for="email">Почта:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="date">Reservation Date:</label>
+        <label for="date">Дата бронирования:</label>
         <input type="date" id="date" name="date" required>
 
-        <label for="time">Reservation Time:</label>
+        <label for="time">Время бронирования:</label>
         <input type="time" id="time" name="time" required>
 
-        <label for="duration">Duration (hours):</label>
+        <label for="duration">На сколько часов бронируете?:</label>
         <input type="number" id="duration" name="duration" min="1" max="24" required>
 
-        <label for="station">Select Station:</label>
+        <label for="station">Выберите компьютер:</label>
         <select id="station" name="station" required>
             <option value="station1">Station 1</option>
             <option value="station2">Station 2</option>
@@ -37,8 +37,7 @@
             <option value="station5">Station 5</option>
             <option value="station6">Station 6</option>
         </select>
-
-        <input type="submit" value="Submit Reservation">
+        <input type="submit" value="Забронировать">
     </form>
 </body>
 </html>
