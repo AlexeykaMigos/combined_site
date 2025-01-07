@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Form</title>
     <link rel="stylesheet" href="/static/style/form.css">
+    <script src="/static/js/form.js" defer></script>
 </head>
 <body>
     <section>Павлов Алексей, группа 1023</section>
     <header>
         <h1>Бронирование компьютера</h1>
     </header>
-    <form id="formInfo">
+    <form id="reservationForm" onsubmit="submitForm(event)">
         <h2>Забронируй свой компьютер</h2>
         <label for="name">Имя:</label>
         <input type="text" id="name" name="name" required>

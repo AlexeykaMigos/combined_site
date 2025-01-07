@@ -7,3 +7,4 @@ class FormData(BaseModel):
     dateTime: str
     reservationTime: str
     durationTime: int
+    station: int
