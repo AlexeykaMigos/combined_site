@@ -15,3 +15,8 @@ async def read_root(request: Request):
 @app.get("/form", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
+
+@app.get("/item", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("item.html", {"request": request})
+
