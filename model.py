@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class FormData(BaseModel):
@@ -8,3 +8,20 @@ class FormData(BaseModel):
     reservationTime: str
     durationTime: int
     station: int
+
+class User(BaseModel):
+    username: str
+    email: EmailStr
+    hashed_password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
+
+class UserIn(BaseModel):
+    username: str
+    email: EmailStr
+    password: str  
