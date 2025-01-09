@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Request, Form, HTTPException
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse, RedirectResponse
 from pydantic import EmailStr
 import json
 import bcrypt
@@ -42,10 +43,14 @@ async def register(
     # Проверка существующего пользователя
     if username in users:
         raise HTTPException(status_code=400, detail="Пользователь с таким именем уже существует")
+    if email in users:
+        raise HTTPException(status_code=400, detail="Пользователь с такой почтой уже существует")
 
     # Хэшируем пароль и сохраняем пользователя
     hashed_password = hash_password(password)
     users[username] = {"email": email, "hashed_password": hashed_password}
     save_users(users)
 
-    return {"message": "Пользователь успешно зарегистрирован"}
+    print(f"Новый пользователь успешно создан: {username}")
+    response = RedirectResponse(url="/", status_code=303)
+    return response
