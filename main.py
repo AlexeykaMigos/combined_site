@@ -4,27 +4,36 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import json
 from pathlib import Path
-from model import FormData  # Предполагаем, что модель определена в model.py
+from model import FormData
+
 
 app = FastAPI()
 
-# Константа для файла JSON
+
 JSON_FILE = 'data.json'
 
 # Настройка шаблонов и статических файлов
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
 # Главная страница
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-# Форма для ввода данных
+
 @app.get("/form", response_class=HTMLResponse)
 async def form_page(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
+@app.get("/login", response_class=HTMLResponse)
+async def form_page(request: Request):
+    return templates.TemplateResponse("login.html", {"request": request})
+
+@app.get("/register", response_class=HTMLResponse)
+async def form_page(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
 
 def save_order_to_json(order: dict):
     try:
@@ -33,11 +42,9 @@ def save_order_to_json(order: dict):
             with open(JSON_FILE, "r", encoding="utf-8") as file:
                 orders = json.load(file)
         except FileNotFoundError:
-            orders = []  # Если файл отсутствует, создаем пустой список
-
+            orders = []  
         # Добавление нового заказа
-        orders.append(order)  # Добавляем словарь напрямую
-
+        orders.append(order) 
         # Запись обратно в файл
         with open(JSON_FILE, "w", encoding="utf-8") as file:
             json.dump(orders, file, ensure_ascii=False, indent=4)
