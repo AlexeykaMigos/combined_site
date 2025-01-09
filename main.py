@@ -5,7 +5,7 @@ from fastapi.templating import Jinja2Templates
 import json
 from pathlib import Path
 from model import FormData
-
+from auth import router as auth_router 
 
 app = FastAPI()
 
@@ -16,6 +16,7 @@ JSON_FILE = 'data.json'
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
 
 # Главная страница
 @app.get("/", response_class=HTMLResponse)
@@ -31,13 +32,9 @@ async def form_page(request: Request):
 async def form_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
-@app.get("/register", response_class=HTMLResponse)
-async def form_page(request: Request):
-    return templates.TemplateResponse("register.html", {"request": request})
 
 def save_order_to_json(order: dict):
     try:
-        # Чтение существующих данных из файла
         try:
             with open(JSON_FILE, "r", encoding="utf-8") as file:
                 orders = json.load(file)
@@ -55,10 +52,8 @@ def save_order_to_json(order: dict):
 @app.post("/reserve")
 async def reserve(request: Request):
     try:
-        
         data = await request.json()
 
-        
         required_fields = ["name", "email", "date", "time", "duration", "station"]
         if not all(field in data for field in required_fields):
             raise HTTPException(status_code=400, detail="Не все поля заполнены")
