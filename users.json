@@ -10,5 +10,9 @@
     "2341142": {
         "email": "a21@mail.ru",
         "hashed_password": "$2b$12$bn1uQGLjNt1UU2QMMsXIbORxhyMoiNN.3umla7fULBReuUpNvGUaO"
+    },
+    "123": {
+        "email": "123@mail.ru",
+        "hashed_password": "$2b$12$NRhR/eJrWbHZpSBeAgnijueMoFyXB5GyhMV7W7RzkrU3PjamMfplS"
     }
 }

@@ -23,15 +23,17 @@ app.include_router(auth_router, prefix="/auth", tags=["auth"])
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+@app.get("/register", response_class=HTMLResponse)
+async def register_page(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
 
 @app.get("/form", response_class=HTMLResponse)
 async def form_page(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
 @app.get("/login", response_class=HTMLResponse)
-async def form_page(request: Request):
+async def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
-
 
 def save_order_to_json(order: dict):
     try:
